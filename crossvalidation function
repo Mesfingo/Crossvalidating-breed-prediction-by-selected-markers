@@ -7,7 +7,7 @@
           has to be true. The default is false. 
 
 # The function outputs 'k' correlation values for a k-fold crossvalidation  
-#
+
 crossv <- function(gdata, k = 5, coln, sub = F) {
   
   # if 'sub' is true, select 'coln' SNP columns from gdata
