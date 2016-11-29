@@ -1,2 +1,3 @@
 # R-code-for-crossvalidating-prediction-using-genetic-data
-This code is for performing k-fold crossvalidation of phenotype prediction using SNP genotype data.
+This code is for performing k-fold crossvalidation of phenotype prediction using SNP genotype data. OLS regression model is fit (lm function) using the training data, and that model is used to predict ('predict' function) the phenotype using the prediction data. The accuracy of prediction is given by corelation netween observed and predicted phenotype values. 
+
