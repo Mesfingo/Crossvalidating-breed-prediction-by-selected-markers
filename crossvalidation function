@@ -1,0 +1,34 @@
+# description of function arguments:-
+# 1. dgdata: genotype data were the first column has phenotype values, and the rest of the columns have SNP data (coded 0,1,2)
+# 2. k: the number of 'folds' for a k-fold crossvalidation, the number of file the data will be divided to
+# 3. coln: the number of SNP columns to use. This is useful if this function is put in a loop to perform the crossvalidation 
+#          for different number of SNP.
+# 4. sub: this is a logical specifying weather to use a subset of the SNP for crossvalidation, so if 'coln' is specified 'sub' 
+          has to be true. The default is false. 
+
+# The function outputs 'k' correlation values for a k-fold crossvalidation  
+#
+crossv <- function(gdata, k = 5, coln, sub = F) {
+  
+  # if 'sub' is true, select 'coln' SNP columns from gdata
+  if(sub){  
+  gdata <- gdata[, c(1:(tsnp + 1))]
+  }
+  
+  # randomize the order of rows  
+  gdata <- gdata[sample(nrow(gdata)),]
+  
+  # add a grouping variable with k groups to gdata 
+  let <- letters[1:k]
+  group <- rep(let, each = floor(nrow(gdata)/k), length.out = nrow(gdata))
+  gdata <- cbind(group, gdata)
+  
+  # do k-fold cross validation and save 'k' correlation/accuracy values in correlations  
+  correlations <- sapply(let, function(x){
+    train_d <- gdata[!(gdata$group == x), -1]
+    pred_d <- gdata[gdata$group == x, -1]
+    m <- lm(Angus ~ ., data = train_d)
+    cor(predict(m, newdata = pred_d[, -1]), pred_d[, 1], use = "complete.obs", method = "pearson") 
+  })
+  return(correlations)
+}
