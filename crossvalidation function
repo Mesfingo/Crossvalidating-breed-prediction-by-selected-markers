@@ -8,11 +8,12 @@
 # 2. k: the number of 'folds' for a k-fold crossvalidation, (i.e. the number of groups the data will be divided into)
 # 3. coln: the number of SNP columns to use. This is useful if this function is put in a loop to perform the crossvalidation 
 #          for different number of SNP. If for example 'coln' is 10, only the first 10 SNP are used. In my case SNP are ordered 
-#          based on their their contribution to population structure, so  
-# 4. sub: this is a logical specifying weather to use a subset of the SNP for crossvalidation, so if 'coln' is specified 'sub' 
-          has to be true. The default is false. 
+#          based on their their contribution to population structure, so the first 10 SNP are the top 10 SNP with  strongest 
+#          contribution to population structure. 
+# 4. sub: this is a logical(T/F) specifying weather to use a subset of  SNP for crossvalidation. If True, 'coln' has to be specified 
+#         and vice versa. The default is False. 
 
-# The function outputs 'k' correlation values for a k-fold crossvalidation  
+# function output: The function outputs 'k' correlation values for a k-fold crossvalidation  
 
 crossv <- function(gdata, k = 5, coln, sub = F) {
   
