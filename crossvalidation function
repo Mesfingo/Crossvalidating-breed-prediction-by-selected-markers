@@ -1,8 +1,14 @@
+# The function takes a file in which the first column has phenotype values and the rest of the columns have genotype values 
+# (SNP coded as 0,1,2), performs k-fold crossvalidation and returns 'k' correlation values. For example, for a 5-fold cross 
+# validation, the data will be randomly divided into 5 equal parts and
+
+
 # description of function arguments:-
 # 1. dgdata: genotype data were the first column has phenotype values, and the rest of the columns have SNP data (coded 0,1,2)
-# 2. k: the number of 'folds' for a k-fold crossvalidation, the number of file the data will be divided to
+# 2. k: the number of 'folds' for a k-fold crossvalidation, (i.e. the number of groups the data will be divided into)
 # 3. coln: the number of SNP columns to use. This is useful if this function is put in a loop to perform the crossvalidation 
-#          for different number of SNP.
+#          for different number of SNP. If for example 'coln' is 10, only the first 10 SNP are used. In my case SNP are ordered 
+#          based on their their contribution to population structure, so  
 # 4. sub: this is a logical specifying weather to use a subset of the SNP for crossvalidation, so if 'coln' is specified 'sub' 
           has to be true. The default is false. 
 
