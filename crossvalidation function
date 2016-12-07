@@ -33,7 +33,7 @@ function(gdata, k = 5, coln, sub = F) {
   group <- rep(let, each = floor(nrow(gdata)/k), length.out = nrow(gdata))
   gdata <- cbind(group, gdata)
   
-  # do k-fold cross validation and save 'k' correlation/accuracy values in correlations  
+  # do k-fold cross validation and save 'k' correlation/accuracy values in 'correlations'  
   correlations <- sapply(let, function(x){
     train_d <- gdata[!(gdata$group == x), -1]
     pred_d <- gdata[gdata$group == x, -1]
