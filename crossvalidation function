@@ -22,7 +22,7 @@ function(gdata, k = 5, coln, sub = F) {
   
   # if 'sub' is true, select 'coln' SNP columns from gdata
   if(sub){  
-  gdata <- gdata[, c(1:(tsnp + 1))]
+  gdata <- gdata[, c(1:(coln + 1))]
   }
   
   # randomize the order of rows  
